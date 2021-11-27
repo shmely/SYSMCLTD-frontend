@@ -1,0 +1,63 @@
+<div class="details">
+    <div class="flex space-between">
+        <mat-icon (click)="toggleEdit()" class="btn" [ngClass]="isEditMode ? 'cdk-visually-hidden' : ''"
+            aria-hidden="true" aria-label="Example home icon">edit</mat-icon>
+        <mat-icon (click)="toggleEdit()" class="btn" [ngClass]="!isEditMode ? 'cdk-visually-hidden' : ''"
+            aria-hidden="true" aria-label="Example home icon">edit_off</mat-icon>
+        <mat-icon (click)="onGoBack()" class="btn" aria-hidden="true" aria-label="Example home icon">arrow_back_ios
+        </mat-icon>
+    </div>
+
+    <div class="subject title">Customer Details</div>
+    <div class="flex">
+        <div class="details-row" (focusout)="onFocusOutEvent()">
+            <label>Name:
+                <input  [readonly]="!isEditMode" type="text" [(ngModel)]="customer.name" />
+            </label>
+            <label>Customer Number:
+                <input [readonly]="!isEditMode" type="text" [(ngModel)]="customer.customerNumber" />
+            </label>
+        </div>
+    </div>
+    <div class="subject">
+        <div class="title">Contacts</div>
+        <div (click)="onAddRow('contact')" class="btn btn-add-row">+</div>
+    </div>
+    <div  *ngFor="let contact of customer.contacts">
+        <div *ngIf="!contact.isDeleted" class="details-row" (focusout)="onFocusOutEvent()">
+            <label>Name:
+                <input  [readonly]="!isEditMode" type="text" [(ngModel)]="contact.fullName" />
+            </label>
+            <label>Office Number:
+                <input [readonly]="!isEditMode" type="text" [(ngModel)]="contact.officeNumber" />
+            </label>
+            <label>Email:
+                <input [readonly]="!isEditMode" type="text" [(ngModel)]="contact.email" />
+            </label>
+            <div class="del-row">
+                <mat-icon *ngIf="isEditMode" (click)="contact.isDeleted=true" class="btn" aria-hidden="true">delete</mat-icon>
+            </div>
+        </div>
+    </div>
+    <div class="subject">
+        <div class="title">Addresses</div>
+        <div (click)="onAddRow('address')" class="btn btn-add-row">+</div>
+    </div>
+    <div *ngFor="let address of customer.addresses">
+        <div *ngIf="!address.isDeleted" class="details-row" (focusout)="onFocusOutEvent()">
+            <label>City:
+                <input [readonly]="!isEditMode" type="text" [(ngModel)]="address.city" />
+            </label>
+            <label>Street:
+                <input [readonly]="!isEditMode" type="text" [(ngModel)]="address.street" />
+            </label>
+            <div class="del-row">
+                <mat-icon *ngIf="isEditMode" (click)="address.isDeleted=true" class="btn" aria-hidden="true">delete
+                </mat-icon>
+            </div>
+        </div>
+
+    </div>
+    <div *ngIf="isEditMode" class="flex flex-end"><button (click)="save()" class="btn">Save</button></div>
+    <div *ngIf="isEditMode && error"  class="error">* <span>{{ error }}</span></div>
+</div>

@@ -1,0 +1,24 @@
+<main role="Customer List" class="customers-list">
+    <div class="title-row"><h1>Customers</h1><mat-icon (click)="onAddCustomer()"  class="btn"  aria-hidden="true">add_circle</mat-icon></div>
+    <table>
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th>Customer Number</th>
+                <th>Created</th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let customer of customers">
+                <td>{{customer.name}}</td>
+                <td>{{customer.customerNumber}}</td>
+                <td>{{customer.created}}</td>
+                <td>
+                    <mat-icon (click)="onDetails(customer)" class="btn" aria-hidden="true">wysiwyg</mat-icon>
+                    <mat-icon (click)="onDelete(customer)"  class="btn" aria-hidden="true">delete</mat-icon>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</main>

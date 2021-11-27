@@ -1,0 +1,29 @@
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    padding: 0;
+    width: 100vw;
+    height: 100vh;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    background-color: #e8eaf6;
+    font-family: Livvic-MediumItalic, Livvic-Bold, Livvic-SemiBold;
+    font-size: 16px;
+}
+
+.btn {
+    cursor: pointer;
+}
+.error {
+    display: flex;
+    justify-content: center;
+    font-family: Livvic-Bold;
+    color: red;
+    font-size: 13px;
+    margin: 10px;
+}
